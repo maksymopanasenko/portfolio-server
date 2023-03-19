@@ -23,8 +23,9 @@ var transporter = nodemailer.createTransport({
 
 async function handleRequest(request, response) {
     const {method, url} = request;
-
-    if (method == 'POST') {
+    if (method == 'GET') {
+        response.end('ok');
+    } else if (method == 'POST') {
         const jsonBody = await getBody(request);
 
         const body = JSON.parse(jsonBody);
