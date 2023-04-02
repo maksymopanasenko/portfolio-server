@@ -26,9 +26,10 @@ async function handleRequest(request, response) {
     if (method == 'GET') {
         response.end('ok');
     } else if (method == 'POST') {
-        response.setHeader('Access-Control-Allow-Origin: *');
-        response.setHeader('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-        response.setHeader('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Methods', 'POST');
+        response.setHeader('Access-Control-Allow-Methods', 'OPTIONS');
+        response.setHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
 
         
         
