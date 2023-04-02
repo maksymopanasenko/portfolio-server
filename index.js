@@ -26,6 +26,12 @@ async function handleRequest(request, response) {
     if (method == 'GET') {
         response.end('ok');
     } else if (method == 'POST') {
+
+        // response.setHeader('Access-Control-Allow-Origin', 'Content-Type');
+        response.setHeader('Access-Control-Allow-Origin', '*');
+        response.setHeader('Access-Control-Allow-Methods', 'POST, GET, DELETE, OPTIONS');
+        response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        
         const jsonBody = await getBody(request);
 
         const body = JSON.parse(jsonBody);
@@ -36,11 +42,6 @@ async function handleRequest(request, response) {
             subject: 'New request from Node.js',
             text: `Name: ${body.name}, E-mail: ${body.email}, Message: ${body.text}`
         };
-
-        response.setHeader('Content-Type', 'text/html; charset=utf-8');
-        response.setHeader('Access-Control-Allow-Origin', '*');
-        response.setHeader('Access-Control-Allow-Headers', 'POST, GET, DELETE, OPTIONS, key');
-        response.setHeader('Access-Control-Allow-Methods', 'POST, GET, DELETE, OPTIONS');
 
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
